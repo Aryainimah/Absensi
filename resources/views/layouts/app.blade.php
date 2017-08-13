@@ -42,16 +42,7 @@
                     <ul class="nav navbar-nav">
                     @if (Auth::check())
                     <li><a href="{{ url('/home')}}">Home</a></li>
-
-                    <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Absensi
-                             <strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('absensi.index')}}">Data Absensi</a></li>
-                               <li class="divider">
-                        </li>
-                    </ul>
-                    </li>
+                    <li><a href="{{ route('user.index')}}">Absensi</a></li>
                     @endif
                     @role('admin')
                     <li class="dropdown">
@@ -71,6 +62,16 @@
                                 <li><a href="{{ route('kelas.index')}}">Data Kelas</a></li>
                                 <li><a href="{{ route('jurusan.index')}}">Data Jurusan</a></li>
                                 <li class="divider">
+                        </li>
+                    </ul>
+                    </li>
+
+                    <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Absensi
+                             <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('absensi.index')}}">Data Absensi</a></li>
+                               <li class="divider">
                         </li>
                     </ul>
                     </li>

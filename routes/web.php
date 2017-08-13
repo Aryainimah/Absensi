@@ -26,5 +26,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
 	Route::resource('siswa','SiswaController');
 	Route::resource('absensi','AbsensiController');
 	Route::resource('akumulasi','AkumulasiController');
+	Route::resource('user','UserController');
 
 });
