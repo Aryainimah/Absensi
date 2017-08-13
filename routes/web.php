@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
+	Route::resource('ortu','OrangtuasController');
+	Route::resource('jurusan','JurusansController');
+	Route::resource('kelas','KelasController');
+	Route::resource('siswa','SiswaController');
+	Route::resource('absensi','AbsensiController');
+	Route::resource('akumulasi','AkumulasiController');
+
+});

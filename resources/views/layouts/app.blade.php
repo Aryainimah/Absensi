@@ -42,9 +42,40 @@
                     <ul class="nav navbar-nav">
                     @if (Auth::check())
                     <li><a href="{{ url('/home')}}">Home</a></li>
-                    <li><a href="{{ url('/home')}}">Data Siswa</a></li>
+
+                    <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Absensi
+                             <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('absensi.index')}}">Data Absensi</a></li>
+                               <li class="divider">
+                        </li>
+                    </ul>
+                    </li>
                     @endif
-                        &nbsp;
+                    @role('admin')
+                    <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Siswa
+                             <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('siswa.index')}}">Data Siswa</a></li>
+                                <li><a href="{{ route('ortu.index')}}">Data Orang Tua</a></li>  
+                                <li class="divider"></li>
+                            </ul>
+                            </li>
+                    
+                    <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kelas
+                             <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('kelas.index')}}">Data Kelas</a></li>
+                                <li><a href="{{ route('jurusan.index')}}">Data Jurusan</a></li>
+                                <li class="divider">
+                        </li>
+                    </ul>
+                    </li>
+
+                    @endrole
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,12 +109,14 @@
                 </div>
             </div>
         </nav>
-
+        @include('layouts._flash')
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script></body>
+    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+        @yield('scripts')
+</body>
 </html>
