@@ -61,6 +61,14 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'id_ortu' => 'required',
+            'id_kelas' => 'required',
+            'no_hp' => 'required',
+            'nama_siswa' => 'required',
+            'nis' => 'required',
+            'alamat' => 'required',
+        ]);
         $siswa = new siswa;
         $siswa->id_kelas = $request->id_kelas;
         $siswa->id_ortu = $request->id_ortu;
@@ -109,6 +117,14 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'id_ortu' => 'required',
+            'id_kelas' => 'required',
+            'no_hp' => 'required',
+            'nama_siswa' => 'required',
+            'nis' => 'required',
+            'alamat' => 'required',
+            ]);
         $siswa = siswa::find($id);
         $siswa->id_kelas = $request->id_kelas;
         $siswa->id_ortu = $request->id_ortu;

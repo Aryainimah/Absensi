@@ -20,7 +20,7 @@ class AbsensiController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()){
-            $absensi = absensi::with('siswa')->get();
+            $absensi = absensi::with('siswa','orangtua')->get();
             return Datatables::of($absensi)
             ->addColumn('action',function($absensi){
                 return view('datatable._action', [
@@ -34,6 +34,7 @@ class AbsensiController extends Controller
         ->addColumn(['data'=>'siswa.nama_siswa','name'=>'siswa.nama_siswa','title'=>'Nama Siswa'])
         ->addColumn(['data'=>'keterangan','name'=>'keterangan','title'=>'Keterangan'])
         ->addColumn(['data'=>'tgl','name'=>'tgl','title'=>'Tanggal'])
+        ->addColumn(['data'=>'orangtua.no_hp','name'=>'orangtua.no_hp','title'=>'No Hp Orang Tua'])
         ->addColumn(['data'=>'action','name'=>'action','title'=>'Opsi','orderable'=>false,'searchable'=>false]);
         return view('absensi.index')->with(compact('html'));
     }
@@ -56,8 +57,17 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'id_siswa' => 'required',
+            'keterangan' => 'required',
+            'tgl' => 'required',
+        ]);
+
+
         $absensi = new absensi;
         $absensi->id_siswa = $request->id_siswa;
+        $ortu = siswa::find($request->id_siswa);
+        $absensi->id_ortu = $ortu->id_ortu;
         $absensi->keterangan = $request->keterangan;
         $absensi->tgl = $request->tgl;
         $absensi->save();
@@ -100,8 +110,16 @@ class AbsensiController extends Controller
      */
     public function update($id, Request $request)
     {
+        $this->validate($request,[
+            'id_siswa' => 'required',
+            'keterangan' => 'required',
+            'tgl' => 'required',
+        ]);
+
         $absensi = absensi::find($id);
         $absensi->id_siswa = $request->id_siswa;
+        $ortu = siswa::find($request->id_siswa);
+        $absensi->id_ortu = $ortu->id_ortu;
         $absensi->keterangan = $request->keterangan;
         $absensi->tgl = $request->tgl;
         $absensi->save();

@@ -1,7 +1,7 @@
 <div class="form-group{{ $errors->has('id_siswa') ? 'has-error' : '' }}">
 	{!! Form::label('id_siswa','Siswa :',['class'=>'col-md-2 control-label']) !!}
 	<div class="col-md-4">
-		{!! Form::select('id_siswa',App\siswa::pluck('nama_siswa','id')->all(),null,['class'=>'js-selectize','placeholder'=>'Pilih Siswa']) !!}
+		{!! Form::select('id_siswa',App\siswa::pluck('nama_siswa','id')->all(),null,['class'=>'form-control','placeholder'=>'Pilih Siswa']) !!}
 		{!! $errors->first('nama_siswa', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>

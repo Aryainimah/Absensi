@@ -54,6 +54,11 @@ class JurusansController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'nama_jur' => 'required',
+        ]);
+
         $jurusans = new jurusans;
         $jurusans->nama_jur = $request->nama_jur;
         $jurusans->save();
@@ -97,6 +102,9 @@ class JurusansController extends Controller
      */
     public function update(Request $request, jurusans $jurusans, $id)
     {
+        $this->validate($request,[
+            'nama_jur' => 'required',
+        ]);
         $jurusans = jurusans::find($id);
         $jurusans->nama_jur = $request->nama_jur;
         $jurusans->save();

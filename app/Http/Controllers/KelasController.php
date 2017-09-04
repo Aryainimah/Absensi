@@ -56,6 +56,12 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'id_jurusan' => 'required',
+            'nama_kelas' => 'required',
+            'walikelas' => 'required',
+        ]);
+
         $kelas = new kelas;
         $kelas->id_jurusan = $request->id_jurusan;
         $kelas->nama_kelas = $request->nama_kelas;
@@ -99,6 +105,12 @@ class KelasController extends Controller
      */
     public function update(Request $request, kelas $kelas,$id)
     {
+        $this->validate($request,[
+            'id_jurusan' => 'required',
+            'nama_kelas' => 'required',
+            'walikelas' => 'required',
+        ]);
+
         $kelas = kelas::find($id);
         $kelas->id_jurusan = $request->id_jurusan;
         $kelas->nama_kelas = $request->nama_kelas;

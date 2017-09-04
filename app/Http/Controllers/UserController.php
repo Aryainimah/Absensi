@@ -19,18 +19,16 @@ class UserController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()){
-            $absensi = absensi::with('siswa')->get();
+            $absensi = absensi::with('siswa','orangtua')->get();
             return Datatables::of($absensi)
-            ->addColumn('action',function($absensi){
-                
-           })->make(true);
+            ->make(true);
     }
         $html = $htmlBuilder
         ->addColumn(['data'=>'siswa.nama_siswa','name'=>'siswa.nama_siswa','title'=>'Nama Siswa'])
         ->addColumn(['data'=>'keterangan','name'=>'keterangan','title'=>'Keterangan'])
         ->addColumn(['data'=>'tgl','name'=>'tgl','title'=>'Tanggal'])
-        ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
-        return view('absensi.index')->with(compact('html'));
+        ->addColumn(['data'=>'orangtua.no_hp','name'=>'orangtua.no_hp','title'=>'No Hp Orang Tua']);
+        return view('user')->with(compact('html'));
     }
 
     /**

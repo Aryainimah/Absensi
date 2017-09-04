@@ -53,7 +53,11 @@ class OrangtuasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nama_ortu' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+        ]);
         $orangtuas = new Orangtuas;
         $orangtuas->nama_ortu = $request->nama_ortu;
         $orangtuas->alamat = $request->alamat;
@@ -99,7 +103,11 @@ class OrangtuasController extends Controller
      */
     public function update(Request $request, Orangtuas $orangtuas, $id)
     {
-        //
+        $this->validate($request,[
+            'nama_ortu' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+        ]);
         $orangtuas = Orangtuas::find($id);
         $orangtuas->nama_ortu = $request->nama_ortu;
         $orangtuas->alamat = $request->alamat;

@@ -12,4 +12,10 @@ class absensi extends Model
     {
     	return $this->belongsTo('App\siswa','id_siswa');
     }
+
+ 	public function orangtua()
+     {
+     	return $this->belongsTo('App\Orangtuas', 'id_ortu');
+     }
+
 }

@@ -15,4 +15,11 @@ class Orangtuas extends Model
     {
     	return $this->hasMany('App\siswa', 'id_ortu');
     }
+
+    public function absensi()
+    {
+     	return $this->belongsTo('App\absensi', 'id_ortu');
+
+    }
 }
+
